@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Brand } from 'src/app/models/brand';
+import { Brand } from 'src/app/models/brand/brand';
+
 import { BrandService } from 'src/app/services/brand/brand.service';
 
 @Component({
@@ -8,15 +9,15 @@ import { BrandService } from 'src/app/services/brand/brand.service';
   styleUrls: ['./brand.component.css']
 })
 export class BrandComponent implements OnInit {
-  brands:Brand[]=[];
-  dataLoaded=false;
-  constructor(private BrandService:BrandService) { }
+  brands:Brand[] = [];
+  dataLoaded = false;
+  constructor(private brandService:BrandService) { }
 
   ngOnInit(): void {
     this.getBrands();
   }
   getBrands(){
-    this.BrandService.getBrands().subscribe(response=>{
+    this.brandService.getBrands().subscribe(response=>{
       this.brands=response.data
       this.dataLoaded=true
     })
