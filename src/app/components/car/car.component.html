@@ -1,24 +1,85 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-secondary" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div>
-<table *ngIf="dataLoaded==true" class="table">
-    <thead>
-       <tr>
-        <th>Car Id</th>
-        <th>Car Name</th>
-        <th>Brand Name</th>
-        <th>Color Name</th>
-        <th>Daily Price</th>
-        <th>Model Year</th>
-      </tr>  
-    </thead>
-    <tr *ngFor="let car of cars">
-        <td>{{car.carId}}</td>
-        <td>{{car.carName}}</td>
-        <td>{{car.brandName}}</td>
-        <td>{{car.colorName}}</td>
-        <td>{{car.dailyPrice}}</td>
-        <td>{{car.modelYear}}</td>
+<div class="row" style="padding-bottom: 50px">
+  <div class="col-lg-12">
+    <div
+      *ngIf="dataLoaded == false"
+      class="spinner-border text-secondary"
+      role="status"
+    >
+      <span class="visually-hidden">Loading...</span>
+    </div>
 
-    </tr>
-</table>
+    <!-- <h4 class="list-group-item-primary" style="text-align: center;">CARS</h4><br> -->
+    <div class="col-lg-12">
+      <div
+        id="carouselExampleControls"
+        class="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div class="carousel-inner">
+          <div
+            *ngFor="let carImage of carImages"
+            [class]="getSliderImageClass(carImage)"
+          >
+            <img
+              src="{{ imageBaseUrl + carImage.imagePath }}"
+              class="d-block w-100"
+              style="height: 500px"
+            />
+          </div>
+        </div>
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    <br />
+
+    <table
+      *ngIf="dataLoaded == true"
+      class="table"
+      class="table table-bordered table-condensend table-hover"
+      style="text-align: center"
+    >
+      <thead class="list-group-item-primary">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Car Name</th>
+          <th scope="col">Brand Name</th>
+          <th scope="col">Color Name</th>
+          <th scope="col">Daily Price</th>
+          <th scope="col">Model Year</th>
+          <th scope="col">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let car of cars"
+          routerLink="/cars/getcardetailbyid/{{ car.carId }}"
+        >
+          <td>{{ car.carId }}</td>
+          <td>{{ car.carName }}</td>
+          <td>{{ car.brandName }}</td>
+          <td>{{ car.colorName }}</td>
+          <td>{{ car.dailyPrice }} ₺</td>
+          <td>{{ car.modelYear }}</td>
+          <td>{{ car.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

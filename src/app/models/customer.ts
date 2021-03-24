@@ -1,5 +1,5 @@
-export interface Customer{
-    firstName:string;
-    lastName:string;
-    companyName:string;
+export interface Customer {
+  firstName: string;
+  lastName: string;
+  companyName: string;
 }
